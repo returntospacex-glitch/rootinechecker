@@ -217,7 +217,7 @@ function App() {
                 <StatItem label="3D" value={stats.d3} />
                 <StatItem label="7D" value={stats.d7} />
                 <StatItem label="30D" value={stats.d30} />
-                <StatItem label="L-REC" value={stats.lastRecord} />
+                <StatItem label="RECENTLY" value={stats.lastRecord} />
               </div>
 
               {/* Main Counter Hub */}
@@ -237,7 +237,7 @@ function App() {
                   </motion.span>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/5 border border-accent/10">
                     <Clock className="w-3 h-3 text-accent" />
-                    <span className="text-[10px] font-black text-accent">AVG. {stats.avgInterval.toFixed(1)}H CYCLE</span>
+                    <span className="text-sm font-black text-accent">AVG. {stats.avgInterval.toFixed(1)}H CYCLE</span>
                   </div>
                 </div>
 
@@ -326,7 +326,7 @@ function App() {
 function StatItem({ label, value }: { label: string, value: number | string }) {
   return (
     <div className="glass rounded-2xl p-4 flex flex-col items-center gap-1 border border-white">
-      <span className="text-[10px] font-black text-[#86868B] tracking-widest">{label}</span>
+      <span className="text-xs font-black text-[#86868B] tracking-widest">{label}</span>
       <span className="text-lg font-black tracking-tight text-[#1D1D1F]">{value}</span>
     </div>
   )
