@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, History, Trophy, RefreshCcw, Calendar as CalendarIcon, X, Check, Clock, TrendingUp } from 'lucide-react'
-import { format, subDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, startOfDay } from 'date-fns'
+import { Play, RefreshCcw, Calendar as CalendarIcon, Clock, TrendingUp } from 'lucide-react'
+import { format, subDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns'
 
 interface Record {
   timestamp: number;
@@ -228,7 +228,7 @@ function StatItem({ label, value }: { label: string, value: number | string }) {
 }
 
 function Calendar({ records }: { records: Record[] }) {
-  const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [currentMonth] = useState(new Date())
 
   const days = eachDayOfInterval({
     start: startOfMonth(currentMonth),
