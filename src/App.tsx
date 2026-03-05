@@ -380,18 +380,18 @@ function Calendar({ records }: { records: Record[] }) {
                 ${isToday ? 'outline outline-2 outline-accent outline-offset-2' : ''}
               `}
             >
-              <span className={`absolute top-1.5 left-2 text-[10px] font-black ${dayCount > 0 ? 'text-[#1D1D1F]' : 'text-[#86868B]'}`}>
+              <span className={`absolute top-1.5 left-2 text-sm font-black ${dayCount > 0 ? 'text-[#1D1D1F]' : 'text-[#86868B]'}`}>
                 {format(day, 'd')}
               </span>
 
-              <div className="flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+              <div className="flex flex-col items-center justify-center gap-1 overflow-hidden">
                 {dayRecords.slice(0, 3).map((r, i) => (
-                  <span key={i} className="text-[8px] font-black text-accent leading-none">
+                  <span key={i} className="text-sm font-black text-accent leading-none">
                     {format(r.timestamp, 'HH:mm')}
                   </span>
                 ))}
                 {dayCount > 3 && (
-                  <span className="text-[7px] font-black text-accent/60">
+                  <span className="text-xs font-black text-accent/60">
                     +{dayCount - 3}
                   </span>
                 )}
