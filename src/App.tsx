@@ -368,22 +368,37 @@ function Calendar({ records }: { records: Record[] }) {
           <div key={d} className="text-center text-[10px] font-black text-[#86868B] mb-2">{d}</div>
         ))}
         {days.map(day => {
-          const dayCount = records.filter(r => isSameDay(r.timestamp, day)).length
+          const dayRecords = records.filter(r => isSameDay(r.timestamp, day))
+          const dayCount = dayRecords.length
           const isToday = isSameDay(day, new Date())
 
           return (
             <div
               key={day.toISOString()}
-              className={`aspect-square rounded-xl flex items-center justify-center relative
+              className={`aspect-square rounded-xl relative flex flex-col items-center justify-center p-1
                 ${dayCount > 0 ? 'bg-accent/10 border border-accent/10' : 'bg-[#F2F2F7] border border-transparent'}
                 ${isToday ? 'outline outline-2 outline-accent outline-offset-2' : ''}
               `}
             >
-              <span className={`text-xs font-bold ${dayCount > 0 ? 'text-accent' : 'text-[#86868B]'}`}>
+              <span className={`absolute top-1.5 left-2 text-[10px] font-black ${dayCount > 0 ? 'text-[#1D1D1F]' : 'text-[#86868B]'}`}>
                 {format(day, 'd')}
               </span>
+
+              <div className="flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+                {dayRecords.slice(0, 3).map((r, i) => (
+                  <span key={i} className="text-[8px] font-black text-accent leading-none">
+                    {format(r.timestamp, 'HH:mm')}
+                  </span>
+                ))}
+                {dayCount > 3 && (
+                  <span className="text-[7px] font-black text-accent/60">
+                    +{dayCount - 3}
+                  </span>
+                )}
+              </div>
+
               {dayCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-accent text-white text-[8px] font-black flex items-center justify-center shadow-lg">
+                <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-accent text-white text-[7px] font-black flex items-center justify-center shadow-lg">
                   {dayCount}
                 </span>
               )}
